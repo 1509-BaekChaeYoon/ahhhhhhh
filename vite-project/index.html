@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인공지능 활용에 대한 1학년 5반 학생들의 인식 조사 보고서</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+        
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: #F4F7F9; /* 기본 배경 */
+            color: #263238; /* Dark Text */
+        }
+
+        /* Color Variables for easy access in JS if needed, but primarily used with Tailwind config */
+        :root {
+            --primary-blue: #2A62B6;
+            --secondary-teal: #4ECDC4;
+            --accent-grey: #A9A9A9;
+            --supporting-light-blue: #E0F2FE;
+            --dark-text: #263238;
+            --light-background: #FFFFFF;
+        }
+
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 320px;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 380px;
+            }
+        }
+        
+        /* Custom card styling for a consistent look */
+        .info-card {
+            background-color: var(--light-background);
+            border-radius: 0.75rem; /* rounded-xl */
+            padding: 1.5rem; /* p-6 */
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* shadow-md */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1); /* shadow-lg */
+        }
+
+        .keyword-tag {
+            display: inline-block;
+            background-color: #E0F2FE; /* Supporting Light Blue */
+            color: #2A62B6; /* Primary Blue */
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-weight: 500;
+            margin: 0.25rem;
+        }
+
+        /* ----- 프로필 이미지 스타일 수정 (겹치지 않고 별도 행에 나오도록) ----- */
+        .profile-img-container {
+            display: flex;
+            justify-content: center; /* 이미지 중앙 정렬 */
+            margin-bottom: 1rem; /* 워드클라우드와의 간격 */
+        }
+        .profile-img {
+            width: 80px; /* Adjust size as needed */
+            height: 80px; /* Adjust size as needed */
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #4ECDC4; /* Accent color border */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background-color: white; /* 배경색 추가하여 깔끔하게 보이도록 */
+        }
+        /* ----------------------------------------------------------- */
+    </style>
+</head>
+<body class="bg-[#F4F7F9]">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-extrabold text-[#2A62B6] mb-2">인공지능 활용에 대한 학생 인식 조사</h1>
+            <p class="text-lg md:text-xl text-gray-600">OO고등학교 디자인과 1학년 5반</p>
+            <p class="text-sm text-gray-500 mt-2">참여 연구원: 1506 박유슬, 1509 백채윤, 1511 이연경, 1512 장은혁</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <section class="info-card">
+                <h2 class="text-2xl font-bold text-[#2A62B6] border-b-2 border-[#4ECDC4] pb-2 mb-4">조사 동기와 목적</h2>
+                <p class="text-base leading-relaxed text-gray-700">
+                    생성형 AI의 보편화에 따라 청소년의 학업 활용도가 급증하고 있다. AI를 '지능적 보조 도구'로 볼 것인지, '비윤리적 활용 수단'으로 볼 것인지에 대한 사회적 논의가 활발하다.
+                    본 연구는 특정 고등학교 학생들의 AI 활용 인식을 구체적으로 조사 및 분석하여, 향후 청소년 대상 AI 윤리 교육과 활용 가이드라인 수립의 기초 자료를 제공하는 것을 목적으로 한다.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-bold text-[#2A62B6] text-center mb-6">조사 계획</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="info-card">
+                        <div class="text-4xl mb-2">🗓️</div>
+                        <h3 class="text-lg font-bold text-gray-800">조사 기간</h3>
+                        <p class="text-base text-[#2A62B6] font-semibold">2025년 5월</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="text-4xl mb-2">🧑‍🎓</div>
+                        <h3 class="text-lg font-bold text-gray-800">조사 대상</h3>
+                        <p class="text-base text-[#2A62B6] font-semibold">OO고 디자인과 1학년 5반<br>(총 18명)</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="text-4xl mb-2">📝</div>
+                        <h3 class="text-lg font-bold text-gray-800">조사 방법</h3>
+                        <p class="text-base text-[#2A62B6] font-semibold">설문조사 및<br>심층 인터뷰</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2 class="text-2xl font-bold text-[#2A62B6] text-center mb-8">AI 기술 인식 설문 결과</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-1 gap-8">
+                    
+                    <article class="info-card">
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-1">Q1. AI 기술의 잠재적 위험성에 대해 얼마나 우려하나요?</h3>
+                        <p class="text-center text-gray-500 mb-4">응답자 대다수(94.4%)는 AI 기술 위험성에 대해 '우려하지 않거나' '중립적' 입장을 보여, 경각심이 비교적 낮은 것으로 나타났다.</p>
+                        <div class="chart-container">
+                            <canvas id="riskChart"></canvas>
+                        </div>
+                    </article>
+
+                    <article class="info-card">
+                           <h3 class="text-xl font-bold text-center text-gray-800 mb-1">Q2. AI의 창작 결과물을 사람의 노력처럼 인정해야 하나요?</h3>
+                           <p class="text-center text-gray-500 mb-4">AI를 인간과 동등한 창작자로 보는 데 강한 거부감이 존재한다. 창작에 있어 인간 고유의 노력을 더 중시하는 태도가 강하게 드러났다.</p>
+                        <div class="chart-container">
+                            <canvas id="creationChart"></canvas>
+                        </div>
+                    </article>
+
+                    <article class="info-card">
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-1">Q3. AI 오용의 책임은 사람에게 있나요?</h3>
+                        <p class="text-center text-gray-500 mb-4">AI 오용의 윤리적 책임은 기술이 아닌, 이를 사용하는 인간에게 있다는 인식이 77.8%로 뚜렷하게 나타났다.</p>
+                        <div class="chart-container">
+                            <canvas id="responsibilityChart"></canvas>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            
+            <section>
+                <h2 class="text-2xl font-bold text-[#2A62B6] text-center mb-8">심층 인터뷰 요약</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="info-card flex flex-col">
+                        <h3 class="text-xl font-bold text-gray-800">맹제우 학생</h3>
+                        <p class="text-sm text-gray-500 mb-3">주제: AI 관련 경험, 인식, 윤리적 관점</p>
+                        
+                        <div class="profile-img-container">
+                            <img src="src/맹제우인터뷰.jpg" alt="맹제우 학생 프로필 사진" class="profile-img">
+                        </div>
+                        <img src="src/인터뷰_1.PNG" alt="맹제우 학생 인터뷰 워드 클라우드" class="w-full h-auto rounded-lg mb-4">
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-2">주요 키워드:</h4>
+                            <div class="flex flex-wrap">
+                                <span class="keyword-tag">그림</span>
+                                <span class="keyword-tag">문제</span>
+                                <span class="keyword-tag">대회</span>
+                                <span class="keyword-tag">중립</span>
+                                <span class="keyword-tag">도구</span>
+                            </div>
+                        </div>
+                        <blockquote class="mt-auto border-l-4 border-[#4ECDC4] pl-4 text-gray-600 italic">
+                            "미래에 AI와 더불어 살아가기 위해 가장 중요한 것은 AI에게 고맙다고 말하는 것이라고 생각한다."
+                        </blockquote>
+                    </div>
+                    <div class="info-card flex flex-col">
+                        <h3 class="text-xl font-bold text-gray-800">박하얀 학생</h3>
+                        <p class="text-sm text-gray-500 mb-3">주제: AI 신뢰도, 창작물 인식, 협업 의향</p>
+                        
+                        <div class="profile-img-container">
+                            <img src="src/박하얀인터뷰.jpg" alt="박하얀 학생 프로필 사진" class="profile-img">
+                        </div>
+                        <img src="src/인터뷰_2.PNG" alt="박하얀 학생 인터뷰 워드 클라우드" class="w-full h-auto rounded-lg mb-4">
+                        <div class="mb-4">
+                             <h4 class="font-semibold mb-2">주요 키워드:</h4>
+                             <div class="flex flex-wrap">
+                                 <span class="keyword-tag">평가</span>
+                                 <span class="keyword-tag">의견</span>
+                                 <span class="keyword-tag">정보</span>
+                                 <span class="keyword-tag">신뢰</span>
+                                 <span class="keyword-tag">사람</span>
+                             </div>
+                        </div>
+                        <blockquote class="mt-auto border-l-4 border-[#4ECDC4] pl-4 text-gray-600 italic">
+                            "먼저 사람의 생각을 우선시하고, 인공지능은 도구 정도로만 사용해야 한다."
+                        </blockquote>
+                    </div>
+                </div>
+            </section>
+
+            <section class="info-card bg-[#2A62B6] text-white">
+                <h2 class="text-2xl font-bold text-white border-b-2 border-[#4ECDC4] pb-2 mb-4">결론 및 제언</h2>
+                <ul class="space-y-3 list-disc list-inside">
+                    <li>학생들은 AI를 <strong class="text-[#4ECDC4]">보조적 도구</strong>로 인식하며, 기술 위험성에 대한 인식은 비교적 낮다.</li>
+                    <li>AI 창작물에 대해서는 <strong class="text-[#4ECDC4]">인간 고유의 가치를 더 높게 평가</strong>하는 경계가 뚜렷하다. (18명 중 17명이 보통 이하로 응답)</li>
+                    <li>AI 오용의 <strong class="text-[#4ECDC4]">책임은 전적으로 사용자(인간)</strong>에게 있다는 인식이 지배적이다. (100%가 보통 이상으로 응답)</li>
+                    <li>유사한 인식 수준은 표준화된 교육에 유리하지만, 개인별 창의성 증진에는 한계가 있을 수 있다.</li>
+                    <li class="mt-4 font-semibold">따라서, AI 기술의 급속한 발전에 맞춰 <strong class="text-[#4ECDC4]">도덕적 윤리와 비판적 사고를 강화</strong>하는 지속적인 맞춤형 교육이 필요하다.</li>
+                </ul>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-12 pt-6 border-t border-gray-300">
+            <p class="text-sm text-gray-500">
+                <strong>참고 자료:</strong> Pew Research Center (2023). "Teens and Artificial Intelligence".
+            </p>
+            <p class="text-xs text-gray-400 mt-2">
+                본 인포그래픽은 제공된 '인공지능 활용에 대한 1학년 5반 학생들의 인식 조사 보고서' 내용을 기반으로 AI에 의해 생성되었습니다. <br>
+                조사 대상(18명)의 한계로, 본 결과는 전체 사회의 인식을 대표하지 않으며 참고용으로 활용해야 합니다.
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const chartColors = {
+                primary: 'rgba(42, 98, 182, 0.8)',
+                secondary: 'rgba(78, 205, 196, 0.8)',
+                accent: 'rgba(169, 169, 169, 0.8)',
+                support: 'rgba(224, 242, 254, 0.8)',
+                dark: 'rgba(38, 50, 56, 0.8)',
+            };
+
+            const commonChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                family: 'Pretendard, sans-serif',
+                                size: 12,
+                            },
+                            color: '#263238',
+                            padding: 20
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                        titleFont: { family: 'Pretendard, sans-serif', size: 14, weight: 'bold' },
+                        bodyFont: { family: 'Pretendard, sans-serif', size: 12 },
+                        padding: 10,
+                        cornerRadius: 4,
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    // Calculate percentage from raw data
+                                    const total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                                    const percentage = (context.raw / total * 100).toFixed(1);
+                                    label += `${context.raw}명 (${percentage}%)`;
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            };
+            
+            // --- Chart 1: AI Risk Concern ---
+            const riskCtx = document.getElementById('riskChart');
+            if(riskCtx) {
+                new Chart(riskCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['전혀 그렇지 않다', '그렇지 않다', '보통이다', '그렇다', '매우 그렇다'],
+                        datasets: [{
+                            label: '응답 수',
+                            data: [2, 6, 9, 1, 0],
+                            backgroundColor: [
+                                chartColors.secondary,
+                                'rgba(129, 212, 250, 0.8)', // light blue
+                                chartColors.accent,
+                                'rgba(255, 183, 77, 0.8)', // orange
+                                'rgba(239, 83, 80, 0.8)', // red
+                            ],
+                            borderColor: '#FFFFFF',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: commonChartOptions
+                });
+            }
+
+            // --- Chart 2: AI Creation Recognition ---
+            const creationCtx = document.getElementById('creationChart');
+            if(creationCtx) {
+                new Chart(creationCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['전혀 그렇지 않다', '그렇지 않다', '보통이다', '그렇다', '매우 그렇다'],
+                        datasets: [{
+                            label: '응답 수',
+                            data: [5, 6, 6, 1, 0],
+                            backgroundColor: [
+                                chartColors.primary,
+                                'rgba(66, 165, 245, 0.8)', // blue
+                                chartColors.accent,
+                                chartColors.secondary,
+                                'rgba(255, 183, 77, 0.8)', // orange
+                            ],
+                            borderColor: '#FFFFFF',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: commonChartOptions
+                });
+            }
+
+            // --- Chart 3: AI Misuse Responsibility ---
+            const responsibilityCtx = document.getElementById('responsibilityChart');
+            if(responsibilityCtx) {
+                new Chart(responsibilityCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['보통이다', '그렇다', '매우 그렇다'], // 0인 데이터는 제외
+                        datasets: [{
+                            label: '응답 수',
+                            data: [4, 7, 7],
+                            backgroundColor: [
+                                chartColors.accent,
+                                chartColors.secondary,
+                                chartColors.primary,
+                            ],
+                            borderColor: '#FFFFFF',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: commonChartOptions
+                });
+            }
+        });
+    </script>
+</body>
+</html>
